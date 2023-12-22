@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Site bloc note" />
+		<title>BlocNote - Awakno</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<h1 id="title" class="title"></h1>
+	</head>
+
+	<body>
+		<input
+			class="input"
+			type="text"
+			id="input"
+			value="Votre tache à faire..."
+		/>
+		<button class="submit" id="submit">Créer ma tache</button>
+
+		<div class="task-list" id="list-task">
+			<h3>Liste des tâches</h3>
+		</div>
+		<button id="all-sup" class="submit-sup">
+			Supprimer toute mes taches
+		</button>
+		<p class="error" id="error"></p>
+		<script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+		<script src="js/index.js"></script>
+	</body>
+	<footer class="footer">
+		<p>&copy; 2023 Awakno. Tous droits réservés.</p>
+	</footer>
+</html>
