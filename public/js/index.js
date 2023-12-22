@@ -31,6 +31,17 @@ function AddTask(taskText) {
 		let Div = document.getElementById("list-task");
 		if (Div) {
 			Div.appendChild(Newtask);
+			fetch("http://localhost:5500/addtask", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: sessionStorage.getItem("email"),
+					password: sessionStorage.getItem("password"),
+					task: taskText,
+				}),
+			});
 		} else {
 			console.log("Le conteneur (Div) n'est pas défini.");
 		}
@@ -125,9 +136,34 @@ document.addEventListener("DOMContentLoaded", () => {
 		autoStart: true,
 		loop: true,
 		cursor: "|",
-		
+
 		delay: 50,
 	});
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+	// Récupérer les informations utilisateur depuis le sessionStorage
+	const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+	let p = document.createElement("p");
+	p.innerText(userInfo.email);
+	// Vérifier si les informations utilisateur existent
+	if (userInfo) {
+		const tasks = userInfo.tasks;
+
+		// Assurez-vous que tasks est un tableau
+		if (Array.isArray(tasks)) {
+			// Parcourez le tableau des tâches
+			for (let i = 0; i < tasks.length; i++) {
+				// Appel à la fonction AddTask avec la tâche actuelle
+				AddTask(tasks[i]);
+			}
+		} else {
+			console.error('La propriété "tasks" n\'est pas un tableau.');
+		}
+	} else {
+		// Rediriger vers la page de connexion si les informations ne sont pas disponibles
+		window.location.href = "http://127.0.0.1:5500/public/html/login.html";
+	}
 });
 
 Title.addEventListener("click", () => {
