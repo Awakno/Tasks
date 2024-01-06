@@ -45,8 +45,8 @@ function AddTask(taskText) {
 	}
 }
 
-window.onload = function () {
-    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+document.addEventListener("DOMContentLoaded", () => {
+	let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     let taskContainer = document.getElementById("list-task");
 
     if (taskContainer) {
@@ -80,8 +80,10 @@ window.onload = function () {
         }, 1000); // Ajustez le temps (en millisecondes) selon vos besoins
     } else {
         console.log("Le conteneur (Div) n'est pas défini.");
-    }
-};
+    }	
+})
+    
+
 
 AddButton.addEventListener("click", () => {
 	AddTask(TaskInput.value);
