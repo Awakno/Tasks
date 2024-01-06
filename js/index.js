@@ -45,22 +45,43 @@ function AddTask(taskText) {
 	}
 }
 
-window.onload = function() {
-	let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-	let Div = document.getElementById("list-task");
+window.onload = function () {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    let taskContainer = document.getElementById("list-task");
 
-	if (Div) {
-		tasks.forEach(function(taskText) {
-			let Newtask = document.createElement("li");
-			Newtask.innerText = taskText;
-			Newtask.classList.add("task");
-			Newtask.id = `task-${taskText}`;
-			Div.appendChild(Newtask);
-		});
-	} else {
-		console.log("Le conteneur (Div) n'est pas défini.");
-	}
-}
+    if (taskContainer) {
+        // Créez un conteneur pour le squelette
+        let skeletonContainer = document.createElement("div");
+        skeletonContainer.classList.add("skeleton-container");
+
+        // Ajoutez des éléments squelette au conteneur
+        for (let i = 0; i < 5; i++) {
+            let skeletonTask = document.createElement("div");
+            skeletonTask.classList.add("skeleton-task");
+            skeletonContainer.appendChild(skeletonTask);
+        }
+
+        // Ajoutez le conteneur squelette au conteneur de tâches
+        taskContainer.appendChild(skeletonContainer);
+
+        // Simulez un délai (vous pouvez ajuster cela selon vos besoins)
+        setTimeout(function () {
+            // Supprimez le conteneur squelette pour arrêter l'effet squelette
+            taskContainer.removeChild(skeletonContainer);
+
+            // Ajoutez les tâches au conteneur
+            tasks.forEach(function (taskText) {
+                let newTask = document.createElement("li");
+                newTask.innerText = taskText;
+                newTask.classList.add("task");
+                newTask.id = `task-${taskText}`;
+                taskContainer.appendChild(newTask);
+            });
+        }, 1000); // Ajustez le temps (en millisecondes) selon vos besoins
+    } else {
+        console.log("Le conteneur (Div) n'est pas défini.");
+    }
+};
 
 AddButton.addEventListener("click", () => {
 	AddTask(TaskInput.value);
@@ -95,7 +116,7 @@ document.addEventListener("click", e => {
 });
 
 document.addEventListener("touchstart", e => {
-	if (e.target.id == `task-${e.target.innerText}`) {
+	if (e.target.id == `task-${e.target.innerText}` || e.target.classList.contains("task")) {
 		e.target.classList.add("done");
 		e.target.classList.remvoe("task");
 
@@ -119,7 +140,14 @@ AllSup.addEventListener("click", () => {
 	for (let i = 0; i < Div.children.length; i++) {
 		if (Div.children[i].classList.contains("task"))
 			Div.children[i].remove();
-	}
+
+		let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+		tasks.splice(i, 1);
+		localStorage.removeItem("tasks");
+		localStorage.setItem("tasks", JSON.stringify(tasks));
+		
+		
+		}
 });
 
 /* document.addEventListener("DOMContentLoaded", () => {
