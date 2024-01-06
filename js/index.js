@@ -45,23 +45,12 @@ function AddTask(taskText) {
 	}
 }
 
-window.onload = function () {
-	isChromeIncognito(function (result) {
-		if (result) {
-			// Le code à exécuter si l'utilisateur est en mode incognito dans Chrome
-			console.log("L'utilisateur est en mode incognito dans Chrome.");
-		} else {
-			// Le code à exécuter si l'utilisateur n'est pas en mode incognito dans Chrome
-			console.log(
-				"L'utilisateur n'est pas en mode incognito dans Chrome."
-			);
-		}
-	});
+window.onload = function() {
 	let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 	let Div = document.getElementById("list-task");
 
 	if (Div) {
-		tasks.forEach(function (taskText) {
+		tasks.forEach(function(taskText) {
 			let Newtask = document.createElement("li");
 			Newtask.innerText = taskText;
 			Newtask.classList.add("task");
@@ -71,7 +60,7 @@ window.onload = function () {
 	} else {
 		console.log("Le conteneur (Div) n'est pas défini.");
 	}
-};
+}
 
 AddButton.addEventListener("click", () => {
 	AddTask(TaskInput.value);
@@ -83,56 +72,42 @@ document.addEventListener("keydown", e => {
 	}
 });
 
-function isChromeIncognito(callback) {
-	var fs =
-		window.RequestFileSystem ||
-		window.webkitRequestFileSystem ||
-		window.mozRequestFileSystem ||
-		window.msRequestFileSystem;
 
-	if (!fs) {
-		// Impossible de détecter le mode privé sur ce navigateur.
-		callback(false);
-	} else {
-		try {
-			// Essayer d'accéder à localStorage en mode incognito
-			localStorage.test = 2;
-			callback(false); // L'accès réussi indique que l'utilisateur n'est pas en mode incognito
-		} catch (e) {
-			// Une erreur indique que l'utilisateur est en mode incognito
-			callback(true);
-		}
-	}
-}
 
 document.addEventListener("click", e => {
-	if (
-		e.target.id == `task-${e.target.innerText}` ||
-		e.target.classList.contains("task")
-	) {
+	if (e.target.id == `task-${e.target.innerText}` || e.target.classList.contains("task")) {
+		console.log("1");
 		e.target.classList.add("done");
 		e.target.classList.remove("task");
-
-		// Retirer la tâche du localStorage
 		const taskText = e.target.innerText;
 		let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 		const indexToRemove = tasks.findIndex(task => task === taskText);
-		
+
 		if (indexToRemove !== -1) {
 			tasks.splice(indexToRemove, 1);
 			localStorage.removeItem("tasks");
 			localStorage.setItem("tasks", JSON.stringify(tasks));
 		}
-
 		setTimeout(() => {
 			e.target.remove();
 		}, 100);
 	}
 });
+
 document.addEventListener("touchstart", e => {
 	if (e.target.id == `task-${e.target.innerText}`) {
 		e.target.classList.add("done");
 		e.target.classList.remvoe("task");
+
+		const taskText = e.target.innerText;
+		let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+		const indexToRemove = tasks.findIndex(task => task === taskText);
+
+		if (indexToRemove !== -1) {
+			tasks.splice(indexToRemove, 1);
+			localStorage.removeItem("tasks");
+			localStorage.setItem("tasks", JSON.stringify(tasks));
+		}
 		setTimeout(() => {
 			e.target.remove();
 		}, 100);
@@ -196,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		delay: 50,
 	});
 });
+
 
 Title.addEventListener("click", () => {
 	const jsConfetti = new JSConfetti({ Title });
