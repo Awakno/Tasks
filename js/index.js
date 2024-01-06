@@ -46,6 +46,12 @@ function AddTask(taskText) {
 }
 
 window.onload = function() {
+	if (isPrivateMode) {
+		if (window.location.href = "/") {
+			window.location.href = "error.html";
+		}
+		
+	}
 	let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 	let Div = document.getElementById("list-task");
 
@@ -71,6 +77,16 @@ document.addEventListener("keydown", e => {
 		AddTask(TaskInput.value);
 	}
 });
+
+function isPrivateMode() {
+  try {
+    localStorage.setItem('test', 'test');
+    localStorage.removeItem('test');
+    return false;
+  } catch (e) {
+    return true;
+  }
+}
 
 document.addEventListener("click", e => {
 	if (e.target.id == `task-${e.target.innerText}` || e.target.classList.contains("task")) {

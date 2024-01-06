@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Une erreur est survenu</title>
+	</head>
+	<body>
+		<div class="error">
+			<h1>Une erreur est survenu</h1>
+			<p>
+				Vous êtes actuellement en navigation privé, cela pourra
+				provoquer des erreurs sur le site.
+			</p>
+			<button onclick="document.location.href = 'https:\/\/google.com' ">
+				Quitter la page
+			</button>
+		</div>
+
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				height: 100vh; /* Utiliser 100vh pour occuper la hauteur totale de la fenêtre */
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.error {
+				width: 90%;
+				max-width: 400px; /* Utiliser max-width pour limiter la largeur sur les écrans plus larges */
+				background-color: bisque;
+				border-radius: 10px;
+				text-align: center;
+				padding: 30px;
+				box-sizing: border-box; /* Pour inclure les rembourrages et bordures dans la largeur totale */
+			}
+
+			.error h1 {
+				color: red;
+			}
+
+			.error p {
+				color: gray;
+			}
+			.error button {
+				background-color: red;
+				color: white;
+				border: none;
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
+				margin-top: 20px;
+				font-size: 16px;
+				transition: background-color 0.3s;
+			}
+			.error button:hover {
+				background-color: darkred;
+			}
+		</style>
+	</body>
+</html>
