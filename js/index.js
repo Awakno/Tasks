@@ -31,12 +31,34 @@ function AddTask(taskText) {
 		let Div = document.getElementById("list-task");
 		if (Div) {
 			Div.appendChild(Newtask);
+
+			// Ajouter la tâche au localStorage
+			let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+			tasks.push(taskText);
+			localStorage.setItem("tasks", JSON.stringify(tasks));
 		} else {
 			console.log("Le conteneur (Div) n'est pas défini.");
 		}
 	} else {
 		let ParagraphError = document.getElementById("error");
 		ParagraphError.innerText = "Veuillez entrer une tâche à faire.";
+	}
+}
+
+window.onload = function() {
+	let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+	let Div = document.getElementById("list-task");
+
+	if (Div) {
+		tasks.forEach(function(taskText) {
+			let Newtask = document.createElement("li");
+			Newtask.innerText = taskText;
+			Newtask.classList.add("task");
+			Newtask.id = `task-${taskText}`;
+			Div.appendChild(Newtask);
+		});
+	} else {
+		console.log("Le conteneur (Div) n'est pas défini.");
 	}
 }
 
@@ -51,7 +73,7 @@ document.addEventListener("keydown", e => {
 });
 
 document.addEventListener("click", e => {
-	if (e.target.id == `task-${e.target.innerText}`) {
+	if (e.target.id == `task-${e.target.innerText}` || e.target.classList.contains("task")) {
 		console.log("1");
 		e.target.classList.add("done");
 		e.target.classList.remove("task");
