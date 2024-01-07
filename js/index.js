@@ -138,18 +138,32 @@ document.addEventListener("touchstart", e => {
 });
 
 AllSup.addEventListener("click", () => {
-	console.log(Div.children);
-	for (let i = 0; i < Div.children.length; i++) {
-		if (Div.children[i].classList.contains("task"))
-			Div.children[i].remove();
+	
+	let nm_tasks = 0;
+	
+	let Div = document.getElementById("list-task");
 
-		let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-		tasks.splice(i, 1);
-		localStorage.removeItem("tasks");
-		localStorage.setItem("tasks", JSON.stringify(tasks));
-		
-		
+	if (Div) {
+		let i = Div.children.length - 1;
+
+		while (i >= 0) {
+			if (Div.children[i].classList.contains("task")) {
+				Div.children[i].remove();
+				let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+				tasks.splice(i, 1);
+				localStorage.removeItem("tasks");
+				localStorage.setItem("tasks", JSON.stringify(tasks));
+			}
+			i--;
 		}
+	} else {
+		console.log("Le conteneur (Div) n'est pas défini.");
+	}
+
+		
+		
+		
+		
 });
 
 /* document.addEventListener("DOMContentLoaded", () => {
