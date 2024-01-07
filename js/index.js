@@ -47,43 +47,41 @@ function AddTask(taskText) {
 
 document.addEventListener("DOMContentLoaded", () => {
 	let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    let taskContainer = document.getElementById("list-task");
+	let taskContainer = document.getElementById("list-task");
 
-    if (taskContainer) {
-        // Créez un conteneur pour le squelette
-        let skeletonContainer = document.createElement("div");
-        skeletonContainer.classList.add("skeleton-container");
+	if (taskContainer) {
+		// Créez un conteneur pour le squelette
+		let skeletonContainer = document.createElement("div");
+		skeletonContainer.classList.add("skeleton-container");
 
-        // Ajoutez des éléments squelette au conteneur
-        for (let i = 0; i < 5; i++) {
-            let skeletonTask = document.createElement("div");
-            skeletonTask.classList.add("skeleton-task");
-            skeletonContainer.appendChild(skeletonTask);
-        }
+		// Ajoutez des éléments squelette au conteneur
+		for (let i = 0; i < 5; i++) {
+			let skeletonTask = document.createElement("div");
+			skeletonTask.classList.add("skeleton-task");
+			skeletonContainer.appendChild(skeletonTask);
+		}
 
-        // Ajoutez le conteneur squelette au conteneur de tâches
-        taskContainer.appendChild(skeletonContainer);
+		// Ajoutez le conteneur squelette au conteneur de tâches
+		taskContainer.appendChild(skeletonContainer);
 
-        // Simulez un délai (vous pouvez ajuster cela selon vos besoins)
-        setTimeout(function () {
-            // Supprimez le conteneur squelette pour arrêter l'effet squelette
-            taskContainer.removeChild(skeletonContainer);
+		// Simulez un délai (vous pouvez ajuster cela selon vos besoins)
+		setTimeout(function () {
+			// Supprimez le conteneur squelette pour arrêter l'effet squelette
+			taskContainer.removeChild(skeletonContainer);
 
-            // Ajoutez les tâches au conteneur
-            tasks.forEach(function (taskText) {
-                let newTask = document.createElement("li");
-                newTask.innerText = taskText;
-                newTask.classList.add("task");
-                newTask.id = `task-${taskText}`;
-                taskContainer.appendChild(newTask);
-            });
-        }, 1000); // Ajustez le temps (en millisecondes) selon vos besoins
-    } else {
-        console.log("Le conteneur (Div) n'est pas défini.");
-    }	
-})
-    
-
+			// Ajoutez les tâches au conteneur
+			tasks.forEach(function (taskText) {
+				let newTask = document.createElement("li");
+				newTask.innerText = taskText;
+				newTask.classList.add("task");
+				newTask.id = `task-${taskText}`;
+				taskContainer.appendChild(newTask);
+			});
+		}, 1000); // Ajustez le temps (en millisecondes) selon vos besoins
+	} else {
+		console.log("Le conteneur (Div) n'est pas défini.");
+	}
+});
 
 AddButton.addEventListener("click", () => {
 	AddTask(TaskInput.value);
@@ -95,10 +93,11 @@ document.addEventListener("keydown", e => {
 	}
 });
 
-
-
 document.addEventListener("click", e => {
-	if (e.target.id == `task-${e.target.innerText}` || e.target.classList.contains("task")) {
+	if (
+		e.target.id == `task-${e.target.innerText}` ||
+		e.target.classList.contains("task")
+	) {
 		console.log("1");
 		e.target.classList.add("done");
 		e.target.classList.remove("task");
@@ -118,9 +117,12 @@ document.addEventListener("click", e => {
 });
 
 document.addEventListener("touchstart", e => {
-	if (e.target.id == `task-${e.target.innerText}` || e.target.classList.contains("task")) {
+	if (
+		e.target.id == `task-${e.target.innerText}` ||
+		e.target.classList.contains("task")
+	) {
 		e.target.classList.add("done");
-		e.target.classList.remvoe("task");
+		e.target.classList.remove("task");
 
 		const taskText = e.target.innerText;
 		let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -138,9 +140,8 @@ document.addEventListener("touchstart", e => {
 });
 
 AllSup.addEventListener("click", () => {
-	
 	let nm_tasks = 0;
-	
+
 	let Div = document.getElementById("list-task");
 
 	if (Div) {
@@ -159,11 +160,6 @@ AllSup.addEventListener("click", () => {
 	} else {
 		console.log("Le conteneur (Div) n'est pas défini.");
 	}
-
-		
-		
-		
-		
 });
 
 /* document.addEventListener("DOMContentLoaded", () => {
@@ -215,7 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		delay: 50,
 	});
 });
-
 
 Title.addEventListener("click", () => {
 	const jsConfetti = new JSConfetti({ Title });

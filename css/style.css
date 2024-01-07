@@ -1,183 +1,106 @@
-.task {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px;
-
-	border-bottom: 1px solid #ccc;
-	cursor: pointer;
-	margin: 0 auto;
-	background-color: #eee;
-	font-family: Arial, Helvetica, sans-serif;
-	transition: background-color 0.3s;
-}
-
-.task:hover {
-	background-color: #ccd;
-}
-
-.task-list {
-	padding: 0;
+/* Global Styles */
+body {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	line-height: 1.6;
 	margin: 0;
+	padding: 0;
+	text-align: center;
+	background-color: #222;
+	color: #fff;
+}
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+/* Header Styles */
+.title {
+	font-size: 2rem;
+	color: #3498db;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 20px;
+}
+
+/* Task Styles */
+.task-list {
 	width: 50%;
 	margin: 0 auto;
 	max-height: 300px;
 	overflow-y: auto;
-	border: 1px solid #ccc;
+	border: 1px solid #444;
 	border-radius: 5px;
-
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-color: #333;
+}
+
+.task {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	border-bottom: 1px solid #444;
+	cursor: pointer;
+	background-color: #3498db;
+	transition: background-color 0.3s;
+	border-radius: 8px;
+}
+
+.task:hover {
+	background-color: #555;
 }
 
 .done {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
-	border-bottom: 1px solid #ccc;
+	padding: 15px;
+	border-bottom: 1px solid #444;
 	cursor: pointer;
-	background-color: #eee;
-	font-family: Arial, Helvetica, sans-serif;
+	background-color: #27ae60;
+	color: #fff;
+	font-weight: bold;
 	transition: background-color 0.3s;
-	background-color: green;
+	border-radius: 8px;
 }
 
-.input {
+.done:hover {
+	background-color: #2ecc71;
+}
+
+/* Input Styles */
+.input,
+.submit,
+.submit-sup {
 	width: 50%;
-	align-items: center;
 	margin: 0 auto;
-	padding: 10px;
-	border: 1px solid #ccc;
+	padding: 15px;
+	border: 1px solid #444;
 	border-radius: 5px;
 	margin-bottom: 10px;
 	font-size: 16px;
 	outline: none;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	transition: box-shadow 0.3s;
-}
-
-.submit {
-	width: 50%;
-	margin: 0 auto;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	margin-bottom: 10px;
-	font-size: 16px;
-	outline: none;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	transition: box-shadow 0.3s;
+	background-color: #333;
+	color: #fff;
 }
 
 .submit:hover {
-	background-color: #ccd;
+	background-color: #555;
 }
 
-h3 {
-	margin-top: 0;
-	margin-bottom: 10px;
-	font-size: 20px;
-	font-weight: bold;
-	text-align: center;
-	color: #333;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
-	font-family: "Courier New", Courier, monospace;
-	text-transform: uppercase;
-	line-height: 1.2;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
-}
-
+/* Submit Suppression Styles */
 .submit-sup {
-	width: 50%;
-
-	margin: 0 auto;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-
-	font-size: 16px;
-	outline: none;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	transition: box-shadow 0.3s;
-	background-color: red;
+	background-color: #e74c3c;
 	color: white;
 	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
 	cursor: pointer;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
-	font-family: "Courier New", Courier, monospace;
-	text-transform: uppercase;
-	line-height: 1.2;
+	border-radius: 8px;
 }
 
-.error {
-	color: red;
-	font-weight: bold;
-	text-align: center;
-	margin-bottom: 10px;
-	font-family: Arial, Helvetica, sans-serif;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
-	font-size: 15px;
-	line-height: 1.2;
-}
-.submit-sup {
-	margin-top: 10px;
-}
-
-body {
-	text-align: center;
-}
-
-.footer {
-	margin-top: 20px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #333;
-	text-align: center;
-
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
-	font-family: "Courier New", Courier, monospace;
-	text-transform: uppercase;
-	line-height: 1.2;
-}
-
-/* Pour les téléphones */
-@media only screen and (max-width: 600px) {
-	.task-list,
-	.input,
-	.submit,
-	.submit-sup {
-		width: 80%; /* Adjust the width as needed for smaller screens */
-	}
-
-	h3 {
-		font-size: 18px; /* Adjust the font size for smaller screens */
-	}
-
-	/* Add more adjustments as needed for smaller screens */
-}
-
-@media only screen and (max-width: 480px) {
-	.task-list,
-	.input,
-	.submit,
-	.submit-sup {
-		width: 100%; /* Full width for phones */
-	}
-
-	/* Add more specific adjustments for phones */
-}
-
-.title {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 30px;
-	color: #333;
-	text-align: center;
-	font-weight: bold;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
-	text-transform: uppercase;
-}
-
+/* Animation Styles */
 .skeleton-container {
 	display: flex;
 	flex-direction: column;
@@ -187,11 +110,11 @@ body {
 .skeleton-task {
 	width: 100%;
 	height: 20px;
-	background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+	background: linear-gradient(90deg, #555 25%, #444 50%, #555 75%);
 	background-size: 200% 100%;
 	animation: pulse 2s infinite;
 	border-radius: 4px;
-	padding: 10px;
+	padding: 15px;
 }
 
 @keyframes pulse {
@@ -209,5 +132,51 @@ body {
 	}
 	100% {
 		background-position: 200% 0;
+	}
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 600px) {
+	.task-list,
+	.input,
+	.submit,
+	.submit-sup {
+		width: 90%; /* Ajustement pour les petits écrans */
+	}
+
+	.title {
+		font-size: 1.5rem;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.task-list,
+	.input,
+	.submit,
+	.submit-sup {
+		width: 90%;
+	}
+
+	.title {
+		margin-bottom: 10px;
+		font-size: 1.2rem; /* Ajustement supplémentaire pour les écrans plus petits */
+	}
+
+	/* Styles spécifiques pour les écrans très petits */
+	.task {
+		padding: 10px; /* Réduction de l'espacement */
+		border-radius: 4px; /* Coins moins arrondis */
+	}
+
+	.done {
+		padding: 10px; /* Réduction de l'espacement */
+		border-radius: 4px; /* Coins moins arrondis */
+	}
+
+	.input,
+	.submit,
+	.submit-sup {
+		padding: 10px; /* Réduction de l'espacement */
+		border-radius: 4px; /* Coins moins arrondis */
 	}
 }
