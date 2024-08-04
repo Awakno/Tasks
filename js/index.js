@@ -46,6 +46,9 @@ function AddTask(taskText) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	if (localStorage.getItem("tasks") === "") {
+		localStorage.setItem("tasks", JSON.stringify([]));
+	}
 	let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 	let taskContainer = document.getElementById("list-task");
 
@@ -69,6 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			// Supprimez le conteneur squelette pour arrêter l'effet squelette
 			taskContainer.removeChild(skeletonContainer);
 
+			if (tasks === "") {
+				localStorage.setItem("tasks", JSON.stringify([]));
+			}
 			// Ajoutez les tâches au conteneur
 			tasks.forEach(function (taskText) {
 				let newTask = document.createElement("li");
@@ -152,8 +158,8 @@ AllSup.addEventListener("click", () => {
 				Div.children[i].remove();
 				let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 				tasks.splice(i, 1);
-				localStorage.removeItem("tasks");
-				localStorage.setItem("tasks", JSON.stringify(tasks));
+
+				localStorage.setItem("tasks", JSON.stringify([]));
 			}
 			i--;
 		}
